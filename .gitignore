@@ -1,0 +1,2 @@
+# THEN explicitly ignore .git metadata
+/openvla/.git/
