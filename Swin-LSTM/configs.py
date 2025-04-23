@@ -40,8 +40,8 @@ def get_args():
 
     # Training parameters
     parser.add_argument('--train_batch_size', default=80, type=int, help='Batch size for training')
-    parser.add_argument('--valid_batch_size', default=10, type=int, help='Batch size for validation')
-    parser.add_argument('--test_batch_size', default=12, type=int, help='Batch size for testing')
+    parser.add_argument('--valid_batch_size', default=80, type=int, help='Batch size for validation')
+    parser.add_argument('--test_batch_size', default=80, type=int, help='Batch size for testing')
     parser.add_argument('--num_workers', default=8, type=int)
     parser.add_argument('--epochs', default=300, type=int)
     parser.add_argument('--epoch_valid', default=50, type=int)
