@@ -115,6 +115,6 @@ def test(args, logger, epoch, model, test_loader, criterion, cache_dir):
             if batch_idx and batch_idx % args.log_valid == 0:
                 logger.info(
                     f'EP:{epoch:04d} BI:{batch_idx:03d}/{num_batches:03d} Loss:{np.mean(losses):.6f} MSE:{mse:.4f} SSIM:{ssim:.4f}')
-                # visualize(inputs, targets, outputs, epoch, batch_idx, cache_dir)
+                visualize(inputs, targets, outputs, epoch, batch_idx, cache_dir)
 
     return np.mean(losses), np.mean(mses), np.mean(ssims)

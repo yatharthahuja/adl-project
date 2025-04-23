@@ -36,7 +36,7 @@ def setup(args):
     
     train_dataset = CustomDataset(split='train')
     valid_dataset = CustomDataset(split='val')
-    # test_dataset  = CustomDataset("test.npz", T_in=10, T_out=10)
+    test_dataset  = CustomDataset(split='test')
     
     print(f'Train dataset size: {len(train_dataset)}')
     print(f'Valid dataset size: {len(valid_dataset)}')

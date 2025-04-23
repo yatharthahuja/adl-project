@@ -4,7 +4,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 from SwinLSTM_D import SwinLSTM
 from configs import get_args
-from dataset import Moving_MNIST_Test
+from dataset import Moving_MNIST_Test, CustomDataset
 from functions import test
 from utils import set_seed, make_dir, init_logger
 
@@ -21,11 +21,16 @@ if __name__ == '__main__':
 
     criterion = nn.MSELoss()
     
-    test_dataset = Moving_MNIST_Test(args)
+    # test_dataset = Moving_MNIST_Test(args)
+    # test_loader = DataLoader(test_dataset, batch_size=args.test_batch_size,
+    #                          num_workers=args.num_workers, shuffle=False, pin_memory=True, drop_last=True)
+    
+    test_dataset = CustomDataset(split='test')
     test_loader = DataLoader(test_dataset, batch_size=args.test_batch_size,
                              num_workers=args.num_workers, shuffle=False, pin_memory=True, drop_last=True)
 
-    model.load_state_dict(torch.load('./Pretrained/trained_model_state_dict'))
+    model.load_state_dict(torch.load('./results/model/trained_model_state_dict'))
+    # model.load_state_dict(torch.load('./Pretrained/trained_model_state_dict'))
 
     start_time = time.time()
 
