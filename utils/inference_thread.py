@@ -1,5 +1,5 @@
 """
-Threading utilities for handling inference in separate threads.
+Threading utilities for handling inference in separate threads
 """
 
 import queue
@@ -8,16 +8,7 @@ import time
 from models.vision_model import get_openvla_output
 
 def setup_inference_thread(processor, model):
-    """
-    Set up threaded inference to avoid blocking the simulation
-
-    Returns:
-        inference_queue: Queue for sending images to inference thread
-        output_queue: Queue for receiving results from inference thread
-        inference_thread: Thread object for inference
-        track_queue: Queue for tracking input-output frame relationships
-        stop_event: threading.Event to signal shutdown
-    """
+    """Set up threaded inference to avoid blocking the simulation"""
     inference_queue = queue.Queue()
     output_queue    = queue.Queue()
     track_queue     = queue.Queue()  # For tracking input-output relationships
@@ -61,11 +52,11 @@ def setup_inference_thread(processor, model):
                 inference_queue.task_done()
                 break
 
-            # ── For first frame, skip the draining process ──
+            # For first frame, skip the draining process
             if is_first_frame:
                 latest = item
             else:
-                # ── Drain everything else, keeping only the very last frame ──
+                # Drain everything else, keeping only the very last frame
                 latest = item
                 while True:
                     try:
@@ -85,7 +76,7 @@ def setup_inference_thread(processor, model):
                 if latest is None:
                     break
 
-            # ── Now actually run inference on the latest frame ──
+            # Run inference on the latest frame
             frame_idx, rgb, instruction = latest
             try:
                 t0 = time.time()

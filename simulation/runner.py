@@ -1,35 +1,14 @@
 """
-Simulation runner functions.
+Simulation runner functions
 """
 
 import time
 import queue
 from robot.kinematics import map_openvla_to_target_pose
 
-def run_simulation(
-    scene, franka, cam,
-    motors_dof, fingers_dof,
-    inference_queue, output_queue, track_queue,
-    inference_thread, stop_event,       
-    num_frames=400, video_filename='video.mp4'
-):
-    """
-    Run the main simulation loop
-    
-    Args:
-        scene: Genesis scene
-        franka: Franka robot entity
-        cam: Camera entity
-        motors_dof: Indices of motor DOFs
-        fingers_dof: Indices of finger DOFs
-        inference_queue: Queue for sending frames to inference thread
-        output_queue: Queue for receiving inference results
-        track_queue: Queue for tracking input-output frame relationships
-        inference_thread: the Thread running inference
-        stop_event: threading.Event to signal the worker to stop
-        num_frames: Number of simulation frames to run
-        video_filename: Name of the output video file
-    """
+def run_simulation(scene, franka, cam, motors_dof, fingers_dof, inference_queue, output_queue, track_queue,
+                    inference_thread, stop_event, num_frames=400, video_filename='video.mp4'):
+    """Run the main simulation loop"""
     # Start recording video
     cam.start_recording()
     
@@ -93,16 +72,16 @@ def run_simulation(
         if elapsed < DT:
             time.sleep(DT - elapsed)
 
-    # Tear down - only save the video, defer all other processing
+    # Save the video defer all other processing
     cam.stop_recording(save_to_filename=video_filename, fps=60)
     print(f"\n===== SIMULATION COMPLETED: {video_filename} =====")
     
-    # Just print minimal statistics, save detailed logging for later
+    # Print minimal statistics, save detailed logging for later
     print(f"Total frames: {num_frames}")
     print(f"Input frames processed: {len(input_frames)}")
     print(f"Output frames processed: {len(output_frames)}")
     
-    # ── cleanly shut down the inference thread ──
+    # Shut down the inference thread 
     stop_event.set()              # tell worker to quit
     inference_queue.put(None)     # wake it if blocked
     inference_thread.join()       # wait for it to exit
