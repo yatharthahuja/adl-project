@@ -4,10 +4,9 @@ Scene setup functions for the simulation environment.
 
 import genesis as gs
 import numpy as np
-from config import (
-    SIM_DT, GRAVITY, CAMERA_RES, CAMERA_FOV, CAMERA_POS, CAMERA_LOOKAT,
+from config import SIM_DT, GRAVITY, CAMERA_RES, CAMERA_FOV, CAMERA_POS, CAMERA_LOOKAT,
     VIEWER_RES, VIEWER_CAMERA_POS, VIEWER_CAMERA_LOOKAT, VIEWER_CAMERA_FOV, VIEWER_MAX_FPS
-)
+
 
 def setup_scene(ramp_z=0.02, ball_radius=0.025, ball_color=(1.0, 0.0, 0.0, 1),
                 ball_z_pos_offset=0.02, ball_x_pos=0.8):

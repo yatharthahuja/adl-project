@@ -1,5 +1,5 @@
 """
-Robot control functions.
+Robot control functions
 """
 
 import numpy as np

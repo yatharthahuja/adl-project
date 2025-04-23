@@ -1,22 +1,12 @@
 """
-Robot kinematics functions for pose mapping.
+Robot kinematics functions for pose mapping
 """
 
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 def map_openvla_to_target_pose(openvla_output):
-    """
-    Map OpenVLA output to robot target pose
-    
-    Args:
-        openvla_output: Vector of action parameters from OpenVLA
-        
-    Returns:
-        target_pos: 3D target position
-        target_quat: Quaternion target orientation
-        gripper_state: Gripper opening value
-    """
+    """Map OpenVLA output to robot target pose"""
     # Unpack the OpenVLA output
     delta_xyz = openvla_output[:3]      # Translation delta
     delta_rpy = openvla_output[3:6]     # Rotation delta (in radians)

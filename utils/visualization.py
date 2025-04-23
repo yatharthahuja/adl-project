@@ -1,5 +1,5 @@
 """
-Visualization utilities for the simulation.
+Visualization utilities for the simulation
 """
 
 import os

@@ -1,5 +1,5 @@
 """
-Logging utilities for recording simulation data.
+Logging utilities for recording simulation data
 """
 
 import os
@@ -52,9 +52,3 @@ def write_inference_stats(stats, log_dir=LOG_DIR):
     
     return os.path.join(log_dir, filename)
 
-# For backward compatibility
-def log_inference_data(input_frames, output_frames, input_output_pairs, sim_params=None, sim_idx=None, log_dir=LOG_DIR):
-    """Log inference timing data to a file - wrapper for backward compatibility"""
-    stats = prepare_inference_stats(input_frames, output_frames, input_output_pairs, sim_params, sim_idx)
-    log_file = write_inference_stats(stats, log_dir)
-    return stats, log_file
