@@ -1,2 +1,11 @@
-# THEN explicitly ignore .git metadata
+
+*.mp4
+*.gif
+*.png
+*.jpg
 /openvla/.git/
+data/
+debug/
+logs/
+plots/
+results/
